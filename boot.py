@@ -1,3 +1,8 @@
+# This file is executed on every boot (including wake-boot from deepsleep)
+#import esp
+#esp.osdebug(None)
+#import webrepl
+#webrepl.start()
 # Complete project details at https://RandomNerdTutorials.com
 
 try:
@@ -12,7 +17,6 @@ import esp
 esp.osdebug(None)
 
 import gc
-
 
 import os
 os.uname()
@@ -30,4 +34,5 @@ while ap.active() == False:
 
 print('Connection successful')
 print(ap.ifconfig())
+
 

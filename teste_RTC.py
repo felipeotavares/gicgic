@@ -30,6 +30,8 @@ def mycallback(a):
 tim0 = Timer(0)
 tim0.init(mode=Timer.PERIODIC, period=1000, callback=mycallback)  
 #
-# tim0.deinit() #desativa timer
+tim0.deinit() #desativa timer
 
 mycallback(1)
+
+

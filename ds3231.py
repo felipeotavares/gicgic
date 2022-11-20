@@ -13,13 +13,13 @@ class RTC:
     w = ["sex", "sab", "dom", "seg", "ter", "qua", "qui"]
     # Initialisation of RTC object. Several settings are possible but everything is optional.
     # If you meet these standards no parameters are required.
-    def __init__(self, sda_pin=19, scl_pin=18, port=0, speed=100000, address=0x68, register=0x00):
+    def __init__(self, sda_pin=19, scl_pin=18, port=0, speed=107816, address=0x68, register=0x00):
         self.rtc_address = address  # for using different i2c address
         self.rtc_register = register  # for using different register on device. DON'T change for DS3231
         sda = machine.Pin(sda_pin)  # configure the sda pin
         scl = machine.Pin(scl_pin)  # configure the scl pin
         self.i2c = machine.I2C(port, sda=sda, scl=scl, freq=speed)  # configure the i2c interface with given parameters
-
+        self.i2c.scan()
     # Method for setting the Time
     def DS3231_SetTime(self, NowTime=b"\x00\x23\x12\x28\x14\x07\x21"):
         # NowTime has to be in format like b'\x00\x23\x12\x28\x14\x07\x21'
@@ -60,10 +60,16 @@ class RTC:
                 return second, minute, hour, weekday, day, month, year
                 # return hour, minute, second, day, month, year
             if mode == 1:  # Mode 1 returns a formated string with time, weekday and date
-                time_string = f"{hour}:{minute}:{second}>{day}.{month}.{year}"
+                time_string = f"{hour}:{minute}:{second} {day}.{month}.{year}"
                 # time_string = f"{hour}:{minute}:{second}>{weekday} {day}.{month}.{year}"
                 # time_string = f"{day}.{month}.{year}<>{hour}:{minute}"
                 # time_string = f"{day}.{month}.{hour}:{minute}:{second}"
+                return time_string
+            if mode == 2:  # Mode 1 returns a formated string with time, weekday and date
+                time_string = f"{day}_{month}_{year}"
+                return time_string
+            if mode == 3:  # Mode 1 returns a formated string with time, weekday and date
+                time_string = f"{hour}:{minute}:{second}"                
                 return time_string
             # If you need different format, feel free to add
 

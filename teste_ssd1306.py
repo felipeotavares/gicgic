@@ -3,6 +3,9 @@ import time
 from machine import Timer, SoftSPI
 from sdcard import SDCard
 import os
+import gfx
+import framebuf
+import desenhos
 
 import machine
 import ssd1306
@@ -63,6 +66,28 @@ mycallback(1)
 tim0 = Timer(0)
 tim0.init(mode=Timer.PERIODIC, period=1000, callback=mycallback)  
 #
-# tim0.deinit() #desativa timer
+tim0.deinit() #desativa timer
 
 mycallback(1)
+
+graphics = gfx.GFX(128, 64, oled.pixel)
+
+oled.fill(0)
+graphics.line(0, 15, 128, 15, 1)
+graphics.circle(64, 32, 15, 1)
+oled.show()
+
+
+
+
+
+
+
+oled.fill(0)
+oled.blit(desenhos.torre, 0, 15)
+oled.blit(sun, 50 , 15)
+oled.show()
+
+oled.fill(0)
+oled.blit(desenhos.sun, 50 , 15)
+oled.show()

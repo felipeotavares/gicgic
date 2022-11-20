@@ -20,12 +20,12 @@ def mycallback(a):
 #     print(f.read())
 #     f.close()
     pass
-
 tim0 = Timer(0)
-tim0.init(mode=Timer.PERIODIC, period=1000, callback=mycallback)  
+
+def  start():
+    print('Iniciando') 
+    tim0.init(mode=Timer.PERIODIC, period=1000, callback=mycallback)  
 #
-tim0.deinit() #desativa timer
-
-mycallback(1)
-
-adc.
+# tim0.deinit() #desativa timer
+start()
+# mycallback(1)

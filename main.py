@@ -1,1 +1,1 @@
-import osfrom machine import Pin, SoftSPIfrom sdcard import SDCard# Pin assignment:spi = SoftSPI(miso=Pin(5), mosi=Pin(6), sck=Pin(4))sd = SDCard(spi, Pin(7))print('Root directory:{}'.format(os.listdir()))vfs = os.VfsFat(sd)os.mount(vfs, '/sd')print('Root directory:{}'.format(os.listdir()))os.chdir('sd')print('SD Card contem:{}'.format(os.listdir()))
+import osimport timetime.sleep(5)import gic_logger# gic_logger.start()
